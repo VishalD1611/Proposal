@@ -11,28 +11,28 @@
 <!-- Floating Hearts -->
 <div class="hearts"></div>
 
-<!-- Fireworks (hidden until YES) -->
-<div class="fireworks hidden" id="fireworks"></div>
+<!-- Fireworks Canvas (REAL BLASTS) -->
+<canvas id="fireworksCanvas" class="hidden"></canvas>
 
-<!-- Music (plays only after YES) -->
+<!-- Music -->
 <audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Search Section -->
+<!-- Search -->
 <div class="google-box" id="searchBox">
   <input type="text" id="searchInput" placeholder="Type your name...">
   <button onclick="propose()">Search</button>
 </div>
 
-<!-- Proposal Section -->
+<!-- Proposal -->
 <div class="proposal hidden" id="proposal">
   <div class="result">
     <h2>❤️ Will you be my forever, Devarshi? ❤️</h2>
 
-    <!-- Image wrapper (NO SPACE before YES) -->
+    <!-- Image wrapper -->
     <div id="imageWrapper" class="hidden">
-      <img id="photo" class="main-photo" src="" alt="Memories">
+      <img id="photo" class="main-photo" src="">
     </div>
 
     <p class="love-text">
