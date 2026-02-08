@@ -2,51 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Google Search</title>
+  <title>My Forever ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="light">
+<body>
+
+<!-- Floating Hearts -->
+<div class="hearts"></div>
 
 <!-- Background Music -->
 <audio id="music" loop>
-  <source src="Music.mp3" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Dark Mode Toggle -->
-<div class="toggle">
-  🌙 <input type="checkbox" onclick="toggleDarkMode()">
-</div>
-
-<!-- Google Search -->
+<!-- Search Box -->
 <div class="google-box" id="searchBox">
-  <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" class="logo">
-  <input type="text" placeholder="Search Google or type a question">
-  <button onclick="propose()">Google Search</button>
+  <input type="text" placeholder="Search something special..." disabled>
+  <button onclick="propose()">Search</button>
 </div>
 
-<!-- Proposal Section -->
+<!-- Proposal Result -->
 <div class="proposal hidden" id="proposal">
-  <h1>❤️ Will you be my forevar, Devarshi? ❤️</h1>
-  <p>From your favorite person,<br><strong>Vishu 💖</strong></p>
+  <div class="result">
+    <h2>❤️ Will you be my forever, Devarshi? ❤️</h2>
 
-  <!-- Slideshow -->
-  <div class="slideshow">
-    <img src="img1.jpg">
-    <img src="img2.jpg">
-    <img src="img3.jpg">
-<img src="img4.jpg">
-    <img src="img5.jpg">
-  </div>
+    <img src="img1.jpg" class="main-photo" id="photo">
 
-  <div class="buttons">
-    <button class="yes" onclick="yes()">YES 💍</button>
-    <button class="no" id="noBtn">NO 😜</button>
-  </div>
+    <p class="love-text">
+      You are my favorite search result 💕<br>
+      Every day, every moment — I choose you.
+    </p>
 
-  <div id="yesMessage" class="hidden">
-    <h2>🎆 She said YES!!! 🎆</h2>
-    <p>My forever starts with you ❤️</p>
+    <div class="buttons">
+      <button class="yes" onclick="yes()">YES 💍</button>
+      <button class="no" id="noBtn">NO 😜</button>
+    </div>
+
+    <div id="yesMessage" class="hidden">
+      <h3>🎆 She said YES!!! 🎆</h3>
+      <p>My forever starts with you ❤️</p>
+    </div>
   </div>
 </div>
 
@@ -55,3 +51,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
