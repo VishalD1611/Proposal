@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Forever ❤️</title>
+  <title>Forever ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,18 +11,21 @@
 <!-- Floating Hearts -->
 <div class="hearts"></div>
 
-<!-- Background Music -->
+<!-- Fireworks (hidden until YES) -->
+<div class="fireworks hidden" id="fireworks"></div>
+
+<!-- Background Music (plays on YES) -->
 <audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Search Box -->
+<!-- Search Section -->
 <div class="google-box" id="searchBox">
-  <input type="text" placeholder="Search something special..." disabled>
+  <input type="text" id="searchInput" placeholder="Type your name...">
   <button onclick="propose()">Search</button>
 </div>
 
-<!-- Proposal Result -->
+<!-- Proposal Section -->
 <div class="proposal hidden" id="proposal">
   <div class="result">
     <h2>❤️ Will you be my forever, Devarshi? ❤️</h2>
@@ -45,8 +48,6 @@
     </div>
   </div>
 </div>
-
-<canvas id="confetti"></canvas>
 
 <script src="script.js"></script>
 </body>
