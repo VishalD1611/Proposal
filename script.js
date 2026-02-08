@@ -6,19 +6,14 @@ const noBtn = document.getElementById("noBtn");
 const photo = document.getElementById("photo");
 const fireworks = document.getElementById("fireworks");
 
-/* Allowed names */
 const allowedNames = ["devarshi", "debu"];
 
-/* Image slideshow */
+/* Slideshow */
 const images = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg", "img5.jpg"];
 let imgIndex = 0;
+let slideshowInterval = null;
 
-setInterval(() => {
-  imgIndex = (imgIndex + 1) % images.length;
-  photo.src = images[imgIndex];
-}, 3000);
-
-/* Search logic */
+/* Search */
 function propose() {
   const input = document.getElementById("searchInput").value.trim().toLowerCase();
 
@@ -30,14 +25,30 @@ function propose() {
   }
 }
 
-/* YES button */
+/* YES */
 function yes() {
   yesMessage.classList.remove("hidden");
+
+  // show images + start slideshow
+  photo.classList.remove("hidden");
+  startSlideshow();
+
+  // fireworks + music
   fireworks.classList.remove("hidden");
   music.play();
 }
 
-/* NO button runs away */
+/* Slideshow logic */
+function startSlideshow() {
+  if (slideshowInterval) return;
+
+  slideshowInterval = setInterval(() => {
+    imgIndex = (imgIndex + 1) % images.length;
+    photo.src = images[imgIndex];
+  }, 3000);
+}
+
+/* NO button runs */
 noBtn.addEventListener("mouseover", () => {
   const x = Math.random() * (window.innerWidth - 100);
   const y = Math.random() * (window.innerHeight - 50);
@@ -46,7 +57,7 @@ noBtn.addEventListener("mouseover", () => {
   noBtn.style.top = y + "px";
 });
 
-/* Floating hearts generator */
+/* Floating hearts */
 const heartsContainer = document.querySelector(".hearts");
 
 function createHeart() {
@@ -54,7 +65,6 @@ function createHeart() {
   heart.classList.add("heart");
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = (5 + Math.random() * 5) + "s";
-  heart.style.opacity = Math.random();
   heartsContainer.appendChild(heart);
   setTimeout(() => heart.remove(), 8000);
 }
