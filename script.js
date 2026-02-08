@@ -1,10 +1,11 @@
 const music = document.getElementById("music");
 const searchBox = document.getElementById("searchBox");
 const proposal = document.getElementById("proposal");
-const yesMessage = document.getElementById("yesMessage");
-const noBtn = document.getElementById("noBtn");
+const loveText = document.getElementById("loveText");
 const imageWrapper = document.getElementById("imageWrapper");
 const photo = document.getElementById("photo");
+const heartBlast = document.getElementById("heartBlast");
+const noBtn = document.getElementById("noBtn");
 
 const canvas = document.getElementById("fireworksCanvas");
 const ctx = canvas.getContext("2d");
@@ -27,17 +28,27 @@ function propose() {
   }
 }
 
-/* YES */
+/* YES sequence */
 function yes() {
-  yesMessage.classList.remove("hidden");
+  // ❤️ Heart blast
+  heartBlast.classList.remove("hidden");
 
-  imageWrapper.classList.remove("hidden");
-  imgIndex = 0;
-  photo.src = images[imgIndex];
-
-  startSlideshow();
+  // 🎵 Music
   music.play();
 
+  // 💌 Show love text after blast
+  setTimeout(() => {
+    loveText.classList.remove("hidden");
+  }, 1800);
+
+  // 📸 Show image + slideshow after text
+  setTimeout(() => {
+    imageWrapper.classList.remove("hidden");
+    photo.src = images[0];
+    startSlideshow();
+  }, 3500);
+
+  // 🎆 Fireworks
   canvas.classList.remove("hidden");
   startFireworks();
 }
@@ -51,23 +62,23 @@ function startSlideshow() {
   }, 3000);
 }
 
-/* NO button runs */
+/* NO runs */
 noBtn.addEventListener("mouseover", () => {
   noBtn.style.position = "absolute";
   noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
   noBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
 });
 
-/* 🎆 Firecracker blasts */
+/* 🎆 Simple firework */
 let particles = [];
 
 function blast(x, y) {
-  for (let i = 0; i < 120; i++) {
+  for (let i = 0; i < 100; i++) {
     particles.push({
       x, y,
       angle: Math.random() * Math.PI * 2,
-      speed: Math.random() * 6 + 2,
-      life: 80,
+      speed: Math.random() * 5 + 2,
+      life: 60,
       color: `hsl(${Math.random() * 360},100%,60%)`
     });
   }
@@ -75,8 +86,8 @@ function blast(x, y) {
 
 function startFireworks() {
   setInterval(() => {
-    blast(Math.random() * canvas.width, Math.random() * canvas.height * 0.5);
-  }, 900);
+    blast(Math.random() * canvas.width, Math.random() * canvas.height * 0.4);
+  }, 1000);
   animateFireworks();
 }
 
@@ -84,7 +95,7 @@ function animateFireworks() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles.forEach((p, i) => {
     p.x += Math.cos(p.angle) * p.speed;
-    p.y += Math.sin(p.angle) * p.speed + 0.4;
+    p.y += Math.sin(p.angle) * p.speed + 0.3;
     p.life--;
     ctx.beginPath();
     ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
