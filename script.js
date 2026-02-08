@@ -5,15 +5,23 @@ const yesMessage = document.getElementById("yesMessage");
 const noBtn = document.getElementById("noBtn");
 const photo = document.getElementById("photo");
 const fireworks = document.getElementById("fireworks");
+const imageWrapper = document.getElementById("imageWrapper");
 
 const allowedNames = ["devarshi", "debu"];
 
-/* Slideshow */
-const images = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg", "img5.jpg"];
+/* Slideshow images (MATCH FILE NAMES EXACTLY) */
+const images = [
+  "img1.jpg",
+  "img2.jpg",
+  "img3.jpg",
+  "img4.JPG",
+  "img5.JPG"
+];
+
 let imgIndex = 0;
 let slideshowInterval = null;
 
-/* Search */
+/* Search logic */
 function propose() {
   const input = document.getElementById("searchInput").value.trim().toLowerCase();
 
@@ -25,12 +33,12 @@ function propose() {
   }
 }
 
-/* YES */
+/* YES button */
 function yes() {
   yesMessage.classList.remove("hidden");
 
   // show images + start slideshow
-  photo.classList.remove("hidden");
+  imageWrapper.classList.remove("hidden");
   startSlideshow();
 
   // fireworks + music
@@ -38,7 +46,7 @@ function yes() {
   music.play();
 }
 
-/* Slideshow logic */
+/* Slideshow */
 function startSlideshow() {
   if (slideshowInterval) return;
 
@@ -48,7 +56,7 @@ function startSlideshow() {
   }, 3000);
 }
 
-/* NO button runs */
+/* NO button runs away */
 noBtn.addEventListener("mouseover", () => {
   const x = Math.random() * (window.innerWidth - 100);
   const y = Math.random() * (window.innerHeight - 50);
@@ -70,4 +78,3 @@ function createHeart() {
 }
 
 setInterval(createHeart, 400);
-
