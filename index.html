@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light">
+
+<!-- Background Music -->
+<audio id="music" loop>
+  <source src="Music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Dark Mode Toggle -->
+<div class="toggle">
+  🌙 <input type="checkbox" onclick="toggleDarkMode()">
+</div>
+
+<!-- Google Search -->
+<div class="google-box" id="searchBox">
+  <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" class="logo">
+  <input type="text" placeholder="Search Google or type a question">
+  <button onclick="propose()">Google Search</button>
+</div>
+
+<!-- Proposal Section -->
+<div class="proposal hidden" id="proposal">
+  <h1>❤️ Will you be my forevar, Devarshi? ❤️</h1>
+  <p>From your favorite person,<br><strong>Vishu 💖</strong></p>
+
+  <!-- Slideshow -->
+  <div class="slideshow">
+    <img src="img1.jpg">
+    <img src="img2.jpg">
+    <img src="img3.jpg">
+<img src="img4.jpg">
+    <img src="img5.jpg">
+  </div>
+
+  <div class="buttons">
+    <button class="yes" onclick="yes()">YES 💍</button>
+    <button class="no" id="noBtn">NO 😜</button>
+  </div>
+
+  <div id="yesMessage" class="hidden">
+    <h2>🎆 She said YES!!! 🎆</h2>
+    <p>My forever starts with you ❤️</p>
+  </div>
+</div>
+
+<canvas id="confetti"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
