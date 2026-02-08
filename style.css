@@ -3,12 +3,12 @@ body {
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(135deg, #0a1a3c, #102a63);
-  color: #ffffff;
+  color: white;
   text-align: center;
   overflow-x: hidden;
 }
 
-/* Search box */
+/* Search */
 .google-box {
   margin-top: 80px;
 }
@@ -18,16 +18,16 @@ input {
   padding: 12px;
   border-radius: 20px;
   border: none;
-  margin-bottom: 15px;
   text-align: center;
 }
 
 button {
+  margin-top: 15px;
   padding: 12px 28px;
   border-radius: 20px;
   border: none;
-  cursor: pointer;
   font-size: 16px;
+  cursor: pointer;
   background: #ff4b7d;
   color: white;
 }
@@ -62,7 +62,6 @@ button {
 
 .love-text {
   font-size: 18px;
-  line-height: 1.6;
   margin-bottom: 25px;
 }
 
@@ -76,7 +75,7 @@ button {
   background: #888;
 }
 
-/* Floating Hearts */
+/* Floating hearts */
 .hearts {
   position: fixed;
   inset: 0;
@@ -116,7 +115,7 @@ button {
 
 @keyframes floatUp {
   from { transform: translateY(0) rotate(45deg); opacity: 0.8; }
-  to   { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
+  to { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
 }
 
 /* Fireworks background */
