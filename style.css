@@ -8,31 +8,9 @@ body {
   overflow-x: hidden;
 }
 
-/* ✨ Glowing lights */
-.glow-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15), transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(255,200,200,0.18), transparent 45%),
-    radial-gradient(circle at 60% 70%, rgba(200,255,255,0.15), transparent 45%),
-    radial-gradient(circle at 30% 80%, rgba(255,255,180,0.18), transparent 45%);
-  animation: glowMove 20s linear infinite;
-}
-
-@keyframes glowMove {
-  0% { filter: blur(0); }
-  50% { filter: blur(6px); }
-  100% { filter: blur(0); }
-}
-
 /* Search */
 .google-box {
   margin-top: 80px;
-  position: relative;
-  z-index: 10;
 }
 
 input {
@@ -59,64 +37,59 @@ button {
 }
 
 /* Proposal */
-.proposal {
-  position: relative;
-  z-index: 20;
-}
-
 .result {
   max-width: 700px;
   margin: 40px auto;
   padding: 20px;
 }
 
-/* 🌸 Flower border */
-.flower-frame {
-  position: relative;
-  z-index: 50;
-  padding: 18px;
-  border-radius: 50%;
-  display: inline-block;
-  background:
-    radial-gradient(circle at top left, #ffb6c1 10%, transparent 40%),
-    radial-gradient(circle at top right, #ffd1dc 10%, transparent 40%),
-    radial-gradient(circle at bottom left, #ffe4e1 10%, transparent 40%),
-    radial-gradient(circle at bottom right, #ffc0cb 10%, transparent 40%);
-  box-shadow:
-    0 0 25px rgba(255,182,193,0.6),
-    0 0 50px rgba(255,105,180,0.4);
-  animation: flowerGlow 4s ease-in-out infinite;
+/* Love text */
+.love-text {
+  font-size: 22px;
+  margin: 30px 0;
+  animation: fadeIn 2s ease forwards;
 }
 
-@keyframes flowerGlow {
-  0%,100% {
-    box-shadow:
-      0 0 20px rgba(255,182,193,0.4),
-      0 0 40px rgba(255,105,180,0.3);
-  }
-  50% {
-    box-shadow:
-      0 0 30px rgba(255,182,193,0.7),
-      0 0 60px rgba(255,105,180,0.5);
-  }
-}
-
+/* Image */
 .main-photo {
   width: 320px;
   height: 420px;
   object-fit: cover;
   border-radius: 18px;
-  display: block;
+  margin-top: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 /* Buttons */
 .yes { background: #e91e63; margin-right: 15px; }
 .no  { background: #888; }
 
+/* ❤️ Heart blast */
+.heart-blast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 120px;
+  z-index: 100;
+  animation: heartBoom 1.8s ease forwards;
+}
+
+@keyframes heartBoom {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  50%  { transform: translate(-50%, -50%) scale(2.5); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
 /* Fireworks canvas */
 #fireworksCanvas {
   position: fixed;
   inset: 0;
-  z-index: 1;
   pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
