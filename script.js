@@ -21,7 +21,7 @@ const images = [
 let imgIndex = 0;
 let slideshowInterval = null;
 
-/* Search logic */
+/* Search */
 function propose() {
   const input = document.getElementById("searchInput").value.trim().toLowerCase();
 
@@ -33,12 +33,18 @@ function propose() {
   }
 }
 
-/* YES button */
+/* YES */
 function yes() {
   yesMessage.classList.remove("hidden");
 
-  // show images + start slideshow
+  // show image container
   imageWrapper.classList.remove("hidden");
+
+  // force first image immediately
+  imgIndex = 0;
+  photo.src = images[imgIndex];
+
+  // start slideshow
   startSlideshow();
 
   // fireworks + music
