@@ -1,78 +1,137 @@
-const music = document.getElementById("music");
-const searchBox = document.getElementById("searchBox");
-const proposal = document.getElementById("proposal");
-const yesMessage = document.getElementById("yesMessage");
-const noBtn = document.getElementById("noBtn");
-
-/* Start Proposal */
-function propose() {
-  searchBox.style.display = "none";
-  proposal.classList.remove("hidden");
-  music.play();
-  startConfetti();
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a1a3c, #102a63);
+  color: #ffffff;
+  text-align: center;
+  overflow-x: hidden;
 }
 
-/* YES Button */
-function yes() {
-  yesMessage.classList.remove("hidden");
-  launchFireworks();
+/* Search box */
+.google-box {
+  margin-top: 80px;
 }
 
-/* NO Button Runs Away */
-noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
-  noBtn.style.position = "absolute";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
-});
-
-/* Dark Mode */
-function toggleDarkMode() {
-  document.body.classList.toggle("dark");
+input {
+  width: 260px;
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  margin-bottom: 15px;
 }
 
-/* Confetti */
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let pieces = [];
-
-function startConfetti() {
-  for (let i = 0; i < 150; i++) {
-    pieces.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 6 + 4,
-      d: Math.random() * 10,
-      color: `hsl(${Math.random()*360},100%,50%)`
-    });
-  }
-  animate();
+button {
+  padding: 12px 28px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  background: #ff4b7d;
+  color: white;
 }
 
-function launchFireworks() {
-  for (let i = 0; i < 300; i++) {
-    pieces.push({
-      x: canvas.width / 2,
-      y: canvas.height / 2,
-      r: Math.random() * 5 + 3,
-      d: Math.random() * 15 + 5,
-      color: `hsl(${Math.random()*360},100%,60%)`
-    });
+.hidden {
+  display: none;
+}
+
+/* Proposal content */
+.result {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.main-photo {
+  width: 320px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 25px auto;
+  display: block;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+@media (max-width: 600px) {
+  .main-photo {
+    width: 260px;
+    height: 360px;
   }
 }
 
-function animate() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  pieces.forEach(p => {
-    ctx.beginPath();
-    ctx.fillStyle = p.color;
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fill();
-    p.y += p.d / 2;
-    if (p.y > canvas.height) p.y = 0;
-  });
-  requestAnimationFrame(animate);
+.love-text {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 25px;
 }
+
+/* Buttons */
+.yes {
+  background: #e91e63;
+  margin-right: 15px;
+}
+
+.no {
+  background: #888;
+}
+
+/* Floating hearts */
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(45deg);
+  animation: floatUp 8s linear infinite;
+  opacity: 0.7;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) rotate(45deg);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(-110vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Confetti canvas */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
