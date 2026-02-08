@@ -4,27 +4,24 @@ const proposal = document.getElementById("proposal");
 const yesMessage = document.getElementById("yesMessage");
 const noBtn = document.getElementById("noBtn");
 const photo = document.getElementById("photo");
-const fireworks = document.getElementById("fireworks");
 const imageWrapper = document.getElementById("imageWrapper");
+
+const canvas = document.getElementById("fireworksCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 const allowedNames = ["devarshi", "debu"];
 
-/* Slideshow images (MATCH FILE NAMES EXACTLY) */
-const images = [
-  "img1.jpg",
-  "img2.jpg",
-  "img3.jpg",
-  "img4.JPG",
-  "img5.JPG"
-];
-
+/* Images */
+const images = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.JPG", "img5.JPG"];
 let imgIndex = 0;
 let slideshowInterval = null;
 
 /* Search */
 function propose() {
   const input = document.getElementById("searchInput").value.trim().toLowerCase();
-
   if (allowedNames.includes(input)) {
     searchBox.style.display = "none";
     proposal.classList.remove("hidden");
@@ -37,50 +34,76 @@ function propose() {
 function yes() {
   yesMessage.classList.remove("hidden");
 
-  // show image container
   imageWrapper.classList.remove("hidden");
-
-  // force first image immediately
-  imgIndex = 0;
-  photo.src = images[imgIndex];
-
-  // start slideshow
+  photo.src = images[0];
   startSlideshow();
 
-  // fireworks + music
-  fireworks.classList.remove("hidden");
+  canvas.classList.remove("hidden");
   music.play();
+
+  startFireworks();
 }
 
 /* Slideshow */
 function startSlideshow() {
   if (slideshowInterval) return;
-
   slideshowInterval = setInterval(() => {
     imgIndex = (imgIndex + 1) % images.length;
     photo.src = images[imgIndex];
   }, 3000);
 }
 
-/* NO button runs away */
+/* NO runs */
 noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
   noBtn.style.position = "absolute";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+  noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
 });
 
-/* Floating hearts */
-const heartsContainer = document.querySelector(".hearts");
+/* 🔥 REAL FIRECRACKER BLAST 🔥 */
+let particles = [];
 
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
-  heartsContainer.appendChild(heart);
-  setTimeout(() => heart.remove(), 8000);
+function blast(x, y) {
+  for (let i = 0; i < 120; i++) {
+    particles.push({
+      x,
+      y,
+      angle: Math.random() * Math.PI * 2,
+      speed: Math.random() * 6 + 2,
+      radius: Math.random() * 2 + 1,
+      life: 100,
+      color: `hsl(${Math.random() * 360},100%,60%)`
+    });
+  }
 }
 
-setInterval(createHeart, 400);
+function startFireworks() {
+  setInterval(() => {
+    blast(
+      Math.random() * canvas.width,
+      Math.random() * canvas.height * 0.6
+    );
+  }, 900);
+
+  animateFireworks();
+}
+
+function animateFireworks() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach((p, i) => {
+    p.x += Math.cos(p.angle) * p.speed;
+    p.y += Math.sin(p.angle) * p.speed + 0.3;
+    p.life--;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+
+    if (p.life <= 0) particles.splice(i, 1);
+  });
+
+  requestAnimationFrame(animateFireworks);
+}
+
